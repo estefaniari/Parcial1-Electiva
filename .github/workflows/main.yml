@@ -1,0 +1,21 @@
+name: Despliegue con surge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install Surge
+        run: npm install -g surge
+
+      - name: Build and Deploy
+        run: |
+          echo "Building and deploying..."
+          surge --project ./ --parcial1-estefaniari.surge.sh
